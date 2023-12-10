@@ -4,6 +4,7 @@ from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 import os
 
 documents = SimpleDirectoryReader("./competition").load_data()
+os.environ['OPENAI_API_KEY'] = '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'
 
 embed_model = HuggingFaceEmbedding(model_name='BAAI/bge-large-en-v1.5')
 
@@ -19,6 +20,7 @@ query_engine = index.as_query_engine(similarity_top_k=2, response_mode='tree_sum
 # )
 
 def answer(question):
+    
     return query_engine.query(question)
 
 if __name__ == "__main__":
