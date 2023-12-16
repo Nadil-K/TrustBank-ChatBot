@@ -47,17 +47,6 @@ if st.sidebar.button("I need to know what are the available Investment Options",
         For more detailed information, please visit our Investment Services section or contact our financial advisors.
     """
     )
-    # # Displaying a hardcoded answer
-    # st.write("""
-    #     **Investment Options at TrustBank:**
-    #     - **Stocks and Bonds**: Invest in a variety of stocks and government or corporate bonds.
-    #     - **Mutual Funds**: Diversify your portfolio with our range of mutual funds.
-    #     - **Retirement Accounts**: Secure your future with our IRA and 401(k) plans.
-    #     - **Savings Accounts**: High-interest savings accounts for risk-free savings.
-    #     - **Certificates of Deposit (CDs)**: Fixed-term CDs with competitive interest rates.
-        
-    #     For more detailed information, please visit our Investment Services section or contact our financial advisors.
-    # """)
 
 st.sidebar.button("Loan Services", key="loans")
 st.sidebar.button("Credit Cards", key="credit_cards")
@@ -109,12 +98,18 @@ def run_query(prompt):
     #         time.sleep(2)
     #         return "Hello! Sorry, we are a banking app."
     #     # return generate_greeting()
+    banking_related_words = [
+    'account', 'savings', 'deposit', 'withdrawal', 'mortgage', 'interest', 
+    'transaction', 'balance', 'ATM', 'insurance', 'financial', 'equity', 
+    'asset', 'liability', 'payment', 'online_banking', 'branch', 'customer', 
+    'risk', 'portfolio'
+    ]
     if any(greet in prompt.lower() for greet in ['hello', 'hi', 'greetings', 'hey']):
         time.sleep(2)
         result =  generate_greeting()
     
     # Check if question is in scope
-    elif not any(keyword in prompt.lower() for keyword in ['bank', 'loan', 'credit', 'investment']):
+    elif not any(keyword in prompt.lower() for keyword in banking_related_words):
         with st.spinner("Opps somthing not related to banking domain! Let me see..."):
             time.sleep(2)
             result = "Sorry, we are a banking app."
